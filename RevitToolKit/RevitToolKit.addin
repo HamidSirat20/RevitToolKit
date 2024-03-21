@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RevitAddIns>
+	<AddIn Type="Command">
+		<Name>RevitToolKit</Name>
+		<Assembly>RevitToolKit.dll</Assembly>
+		<AddInId>FD597815-D730-476B-A214-B1004315241F</AddInId>
+		<FullClassName>RevitToolKit.Main</FullClassName>
+		<Text>RevitToolKit</Text>
+		<Description>Get the Id from an element</Description>
+		<VendorId>Hamid</VendorId>
+		<VendorDescription>@Learndynamo</VendorDescription>
+		<VisibilityMode>NotVisibleWhenNoActiveDocument</VisibilityMode>
+	</AddIn>
+	<AddIn Type="Application">
+		<Name>RevitToolKit</Name>
+		<Assembly>RevitToolKit.dll</Assembly>
+		<AddInId>C06A42CE-1897-458B-AB85-E0DCF3FC6046</AddInId>
+		<FullClassName>RevitToolKit.Application</FullClassName>
+		<VendorId>HamidDev</VendorId>
+		<VendorDescription>https://github.com/HamidSirat20</VendorDescription>
+		<VisbilityMode>NotVisibleWhenNoActiveDocument</VisbilityMode>
+	</AddIn>
+</RevitAddIns>
