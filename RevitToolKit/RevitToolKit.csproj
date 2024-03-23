@@ -57,6 +57,7 @@
     <Compile Include="Application.cs" />
     <Compile Include="Commands.cs" />
     <Compile Include="DeleteElement.cs" />
+    <Compile Include="DuplicateElement.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

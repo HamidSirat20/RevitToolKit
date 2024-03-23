@@ -24,12 +24,20 @@ namespace RevitToolKit
         {
             RibbonPanel ribbonPanel = RibbonPanel(application);
             string assemblyPath = Assembly.GetExecutingAssembly().Location;
-            if (ribbonPanel.AddItem(new PushButtonData("Delete Element", "Delete", assemblyPath, "RevitToolKit.DeleteElement")) is PushButton button)
+            if (ribbonPanel.AddItem(new PushButtonData("Delete Element", "Delete", assemblyPath, "RevitToolKit.DeleteElement")) is PushButton deleteButton)
             {
-                button.ToolTip = "Delete Element";
+                deleteButton.ToolTip = "Delete Element";
                 Uri uri = new Uri(Path.Combine(Path.GetDirectoryName(assemblyPath), "Resources", "delete.png"));
                 BitmapImage bitmap = new BitmapImage(uri);
-                button.LargeImage = bitmap;
+                deleteButton.LargeImage = bitmap;
+            }
+
+            if (ribbonPanel.AddItem(new PushButtonData("Duplicate Element", "Duplicate", assemblyPath, "RevitToolKit.DuplicateElement")) is PushButton infoButton)
+            {
+                infoButton.ToolTip = "Duplicate element";
+                Uri uriInfo = new Uri(Path.Combine(Path.GetDirectoryName(assemblyPath), "Resources", "duplicate.gif"));
+                BitmapImage bitmapInfo = new BitmapImage(uriInfo);
+                infoButton.LargeImage = bitmapInfo;
             }
             return Result.Succeeded;
         }
