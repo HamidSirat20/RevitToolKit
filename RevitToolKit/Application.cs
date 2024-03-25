@@ -10,6 +10,7 @@ using Autodesk.Revit.DB;
 using System.IO;
 using Autodesk.Revit.DB.Visual;
 using System.Windows.Media.Imaging;
+using Autodesk.Revit.Attributes;
 
 namespace RevitToolKit
 {
@@ -38,6 +39,14 @@ namespace RevitToolKit
                 Uri uriInfo = new Uri(Path.Combine(Path.GetDirectoryName(assemblyPath), "Resources", "duplicate.gif"));
                 BitmapImage bitmapInfo = new BitmapImage(uriInfo);
                 infoButton.LargeImage = bitmapInfo;
+            }
+
+            if (ribbonPanel.AddItem(new PushButtonData("Dimention Element", "Dimention", assemblyPath, "RevitToolKit.DimentionELements")) is PushButton dimButton)
+            {
+                dimButton.ToolTip = "Duplicate element";
+                Uri uriInfo = new Uri(Path.Combine(Path.GetDirectoryName(assemblyPath), "Resources", "dimention.png"));
+                BitmapImage bitmapInfo = new BitmapImage(uriInfo);
+                dimButton.LargeImage = bitmapInfo;
             }
             return Result.Succeeded;
         }
