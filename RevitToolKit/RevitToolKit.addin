@@ -18,6 +18,6 @@
 		<FullClassName>RevitToolKit.Application</FullClassName>
 		<VendorId>HamidDev</VendorId>
 		<VendorDescription>https://github.com/HamidSirat20</VendorDescription>
-		<VisbilityMode>NotVisibleWhenNoActiveDocument</VisbilityMode>
+		<VisbilityMode>NotVisibleWhenNoActiveDocument</VisbilityMode>		
 	</AddIn>
 </RevitAddIns>

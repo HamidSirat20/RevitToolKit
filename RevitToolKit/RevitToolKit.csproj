@@ -56,12 +56,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application.cs" />
-    <Compile Include="Commands.cs" />
+    <Compile Include="InverseSelection.cs" />
     <Compile Include="DeleteElement.cs" />
     <Compile Include="DuplicateElement.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DimentionELements.cs" />
+    <Compile Include="TestClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="RevitToolKit.addin">
@@ -79,7 +80,6 @@
     <PostBuildEvent>copy "$(TargetDir)"."" "$(AppData)\Autodesk\Revit\Addins\2022\"
 
 if not exist "$(AppData)\Autodesk\Revit\Addins\2022\Resources" mkdir "$(AppData)\Autodesk\Revit\Addins\2022\Resources"
-xcopy "$(ProjectDir)\Resources" "$(AppData)\Autodesk\Revit\Addins\2022\Resources\" /E /I /Y
-</PostBuildEvent>
+xcopy "$(ProjectDir)\Resources" "$(AppData)\Autodesk\Revit\Addins\2022\Resources\" /E /I /Y</PostBuildEvent>
   </PropertyGroup>
 </Project>

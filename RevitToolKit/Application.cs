@@ -22,9 +22,14 @@ namespace RevitToolKit
         }
 
         public Result OnStartup(UIControlledApplication application)
-        {
+        { 
             RibbonPanel ribbonPanel = RibbonPanel(application);
+            //can enable or disable the panel
+           //ribbonPanel.Enabled = false;
+           //will hide or make visible the panel
+           // ribbonPanel.Visible = true;
             string assemblyPath = Assembly.GetExecutingAssembly().Location;
+
             if (ribbonPanel.AddItem(new PushButtonData("Delete Element", "Delete", assemblyPath, "RevitToolKit.DeleteElement")) is PushButton deleteButton)
             {
                 deleteButton.ToolTip = "Delete Element";
@@ -33,13 +38,19 @@ namespace RevitToolKit
                 deleteButton.LargeImage = bitmap;
             }
 
+            ribbonPanel.AddSeparator();
+
             if (ribbonPanel.AddItem(new PushButtonData("Duplicate Element", "Duplicate", assemblyPath, "RevitToolKit.DuplicateElement")) is PushButton infoButton)
             {
                 infoButton.ToolTip = "Duplicate element";
+                ContextualHelp contextualHelp = new ContextualHelp(ContextualHelpType.Url, "https://eshaqzada.netlify.app/");
+                infoButton.SetContextualHelp(contextualHelp);
                 Uri uriInfo = new Uri(Path.Combine(Path.GetDirectoryName(assemblyPath), "Resources", "duplicate.gif"));
                 BitmapImage bitmapInfo = new BitmapImage(uriInfo);
                 infoButton.LargeImage = bitmapInfo;
             }
+
+            ribbonPanel.AddSeparator();
 
             if (ribbonPanel.AddItem(new PushButtonData("Dimention Element", "Dimention", assemblyPath, "RevitToolKit.DimentionELements")) is PushButton dimButton)
             {
@@ -48,6 +59,65 @@ namespace RevitToolKit
                 BitmapImage bitmapInfo = new BitmapImage(uriInfo);
                 dimButton.LargeImage = bitmapInfo;
             }
+
+            ribbonPanel.AddSeparator();
+            if (ribbonPanel.AddItem(new PushButtonData("Test1", "Test1", assemblyPath, "RevitToolKit.Test")) is PushButton btnCommand)
+            {
+                btnCommand.ToolTip = "Reverse Elements";
+                Uri uriInfo = new Uri(Path.Combine(Path.GetDirectoryName(assemblyPath), "Resources", "toolkit.png"));
+                BitmapImage bitmapInfo = new BitmapImage(uriInfo);
+                btnCommand.LargeImage = bitmapInfo;
+            }
+
+            // Add a pulldown button to the ribbon panel
+            PulldownButtonData pulldownButtonData = new PulldownButtonData("CommandDropdown", "Command");
+            PulldownButton pulldownButton = ribbonPanel.AddItem(pulldownButtonData) as PulldownButton;
+
+            if (pulldownButton != null)
+            {
+                // Set tooltip and icon for the pulldown button
+                pulldownButton.ToolTip = "Select a Command";
+                Uri uriInfo = new Uri(Path.Combine(Path.GetDirectoryName(assemblyPath), "Resources", "toolkit.png"));
+                BitmapImage bitmapInfo = new BitmapImage(uriInfo);
+                pulldownButton.LargeImage = bitmapInfo;
+
+                // Add individual commands to the pulldown button
+                PushButton btnCommand1 = pulldownButton.AddPushButton(new PushButtonData("Command1", "Inverse selection", assemblyPath, "RevitToolKit.InverseSelection")) as PushButton;
+                btnCommand1.ToolTip = "Inverse Selection walls";
+
+                PushButton btnCommand2 = pulldownButton.AddPushButton(new PushButtonData("Command2", "Command 2", assemblyPath, "RevitToolKit.Command2")) as PushButton;
+                btnCommand2.ToolTip = "Command 2 test";
+            }
+
+            // Create the split button data
+            SplitButtonData splitButtonData = new SplitButtonData("CommandSplit", "Command");
+
+            // Add the split button to the ribbon panel
+            SplitButton splitButton = ribbonPanel.AddItem(splitButtonData) as SplitButton;
+
+            if (splitButton != null)
+            {
+                // Set the tooltip for the split button
+                splitButton.ToolTip = "Choose a Command";
+
+                // Add individual commands to the split button
+                PushButton btnCommand1 = splitButton.AddPushButton(new PushButtonData("Command3", "Command 3", assemblyPath, "RevitToolKit.Command3")) as PushButton;
+                btnCommand1.ToolTip = "Command 1 test";
+                Uri uriInfo1 = new Uri(Path.Combine(Path.GetDirectoryName(assemblyPath), "Resources", "toolkit.png"));
+                btnCommand1.LargeImage = new BitmapImage(uriInfo1);
+
+                PushButton btnCommand2 = splitButton.AddPushButton(new PushButtonData("Command4", "Command 4", assemblyPath, "RevitToolKit.Command4")) as PushButton;
+                btnCommand2.ToolTip = "Command 2 test";
+                Uri uriInfo2 = new Uri(Path.Combine(Path.GetDirectoryName(assemblyPath), "Resources", "toolkit.png"));
+                btnCommand2.LargeImage = new BitmapImage(uriInfo2);
+
+                // Optionally set the default button (visibly clicked when the main button part is used)
+                splitButton.CurrentButton = btnCommand1;
+            }
+
+            // Continue adding more buttons if needed
+
+
             return Result.Succeeded;
         }
 
