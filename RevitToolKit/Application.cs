@@ -23,6 +23,7 @@ namespace RevitToolKit
 
         public Result OnStartup(UIControlledApplication application)
         { 
+            
             RibbonPanel ribbonPanel = RibbonPanel(application);
             //can enable or disable the panel
            //ribbonPanel.Enabled = false;
@@ -39,7 +40,7 @@ namespace RevitToolKit
             }
 
             ribbonPanel.AddSeparator();
-
+           
             if (ribbonPanel.AddItem(new PushButtonData("Duplicate Element", "Duplicate", assemblyPath, "RevitToolKit.DuplicateElement")) is PushButton infoButton)
             {
                 infoButton.ToolTip = "Duplicate element";
@@ -68,6 +69,48 @@ namespace RevitToolKit
                 BitmapImage bitmapInfo = new BitmapImage(uriInfo);
                 btnCommand.LargeImage = bitmapInfo;
             }
+
+            ribbonPanel.AddSeparator();
+
+            if (ribbonPanel.AddItem(new PushButtonData("Export BIM Data", "Export", assemblyPath, "RevitToolKit.ExportBIMData")) is PushButton exportButton)
+            {
+                exportButton.ToolTip = "Export BIM data to CSV";
+                Uri uri = new Uri(Path.Combine(Path.GetDirectoryName(assemblyPath), "Resources", "export.png"));
+                BitmapImage bitmap = new BitmapImage(uri);
+                exportButton.LargeImage = bitmap;
+            }
+
+            ribbonPanel.AddSeparator();
+
+
+            if (ribbonPanel.AddItem(new PushButtonData("Import BIM Data", "Import", assemblyPath, "RevitToolKit.ImportBIMData")) is PushButton importButton)
+            {
+                importButton.ToolTip = "Import BIM data from CSV";
+                Uri uri = new Uri(Path.Combine(Path.GetDirectoryName(assemblyPath), "Resources", "import.png"));
+                BitmapImage bitmap = new BitmapImage(uri);
+                importButton.LargeImage = bitmap;
+            }
+
+            ribbonPanel.AddSeparator();
+
+            if (ribbonPanel.AddItem(new PushButtonData("Validate BIM Data", "Validate", assemblyPath, "RevitToolKit.ValidateBIMData")) is PushButton validateButton)
+            {
+                validateButton.ToolTip = "Validate BIM data";
+                Uri uri = new Uri(Path.Combine(Path.GetDirectoryName(assemblyPath), "Resources", "validate.png"));
+                BitmapImage bitmap = new BitmapImage(uri);
+                validateButton.LargeImage = bitmap;
+            }
+
+            ribbonPanel.AddSeparator();
+
+            if (ribbonPanel.AddItem(new PushButtonData("Generate BIM Report", "Report", assemblyPath, "RevitToolKit.GenerateBIMReport")) is PushButton reportButton)
+            {
+                reportButton.ToolTip = "Generate BIM data report";
+                Uri uri = new Uri(Path.Combine(Path.GetDirectoryName(assemblyPath), "Resources", "report.png"));
+                BitmapImage bitmap = new BitmapImage(uri);
+                reportButton.LargeImage = bitmap;
+            }
+
 
             // Add a pulldown button to the ribbon panel
             PulldownButtonData pulldownButtonData = new PulldownButtonData("CommandDropdown", "Command");
@@ -114,9 +157,6 @@ namespace RevitToolKit
                 // Optionally set the default button (visibly clicked when the main button part is used)
                 splitButton.CurrentButton = btnCommand1;
             }
-
-            // Continue adding more buttons if needed
-
 
             return Result.Succeeded;
         }

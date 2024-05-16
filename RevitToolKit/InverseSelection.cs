@@ -26,9 +26,14 @@ namespace RevitToolKit
         
             var elementId = collector.OfClass(typeof(Wall)).ToElementIds();
             
+            ExclusionFilter exclusionFilter = new ExclusionFilter(elementId);
 
-            var ele = collector.WherePasses(windows).WhereElementIsNotElementType().ToElements();
-            collector.WhereElementIsCurveDriven().Excluding(elementId);            
+            LogicalAndFilter logicalAndFilter = new LogicalAndFilter(windows, exclusionFilter);
+
+            var ele = collector.WherePasses(logicalAndFilter).WhereElementIsNotElementType().ToElements();
+            AreaFilter areaFilter = new AreaFilter();
+
+            BuiltInParameter builtInParameter = BuiltInParameter.ROOM_AREA;
             
             TaskDialog.Show("walls ", ele.Count().ToString());
 

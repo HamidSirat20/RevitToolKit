@@ -56,6 +56,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application.cs" />
+    <Compile Include="ExportBIMData.cs" />
+    <Compile Include="GenerateBIMReport.cs" />
+    <Compile Include="ImportBIMData.cs" />
     <Compile Include="InverseSelection.cs" />
     <Compile Include="DeleteElement.cs" />
     <Compile Include="DuplicateElement.cs" />
@@ -63,6 +66,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DimentionELements.cs" />
     <Compile Include="TestClass.cs" />
+    <Compile Include="ValidateBIMData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="RevitToolKit.addin">
