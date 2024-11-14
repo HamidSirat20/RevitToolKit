@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace RevitToolKit
 {
     [Transaction(TransactionMode.Manual)]
-    public class ChangeDiplayGraphic : IExternalCommand
+    public class ChangeDisplayGraphic : IExternalCommand
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {

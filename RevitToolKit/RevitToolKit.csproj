@@ -109,7 +109,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application.cs" />
-    <Compile Include="ChangeDiplayGraphic.cs" />
+    <Compile Include="ChangeDisplayGraphic.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="ElementIntersectElement.cs" />
     <Compile Include="InverseSelection.cs" />
