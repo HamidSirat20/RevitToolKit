@@ -11,6 +11,7 @@ using System.IO;
 using Autodesk.Revit.DB.Visual;
 using System.Windows.Media.Imaging;
 using Autodesk.Revit.Attributes;
+using System.Configuration.Assemblies;
 
 namespace RevitToolKit
 {
@@ -31,85 +32,25 @@ namespace RevitToolKit
            // ribbonPanel.Visible = true;
             string assemblyPath = Assembly.GetExecutingAssembly().Location;
 
-            if (ribbonPanel.AddItem(new PushButtonData("Delete Element", "Delete", assemblyPath, "RevitToolKit.DeleteElement")) is PushButton deleteButton)
-            {
-                deleteButton.ToolTip = "Delete Element";
-                Uri uri = new Uri(Path.Combine(Path.GetDirectoryName(assemblyPath), "Resources", "delete.png"));
-                BitmapImage bitmap = new BitmapImage(uri);
-                deleteButton.LargeImage = bitmap;
-            }
+            RevitCusttomBtn(application, assemblyPath, "Delete Element", "Delete","RevitToolKit.DeleteElement", "Delete an Element", "delete.png");
 
-            ribbonPanel.AddSeparator();
+            RevitCusttomBtn(application, assemblyPath, "Duplicate an Element", "Duplicate", "RevitToolKit.DuplicateElement", "Duplicate an Element", "duplicate.gif");
+
+            RevitCusttomBtn(application, assemblyPath, "Dimension two Element", "Dimension", "RevitToolKit.DimensionELements", "Dimension an Element", "dimention.png");
+
+            RevitCusttomBtn(application, assemblyPath, "Rotate an Element", "Rotate", "RevitToolKit.RotateElement", "Rotate an Element", "rotate.png");
+
+            RevitCusttomBtn(application, assemblyPath, "Intersects", "Intersects", "RevitToolKit.ElementIntersectElement", "Intersect an Element", "report.png");
+
+            RevitCusttomBtn(application, assemblyPath, "test button", "Test btn", "RevitToolKit.TestClass", "Intersect an Element", "toolkit.png");
+
            
-            if (ribbonPanel.AddItem(new PushButtonData("Duplicate Element", "Duplicate", assemblyPath, "RevitToolKit.DuplicateElement")) is PushButton infoButton)
-            {
-                infoButton.ToolTip = "Duplicate element";
-                ContextualHelp contextualHelp = new ContextualHelp(ContextualHelpType.Url, "https://eshaqzada.netlify.app/");
-                infoButton.SetContextualHelp(contextualHelp);
-                Uri uriInfo = new Uri(Path.Combine(Path.GetDirectoryName(assemblyPath), "Resources", "duplicate.gif"));
-                BitmapImage bitmapInfo = new BitmapImage(uriInfo);
-                infoButton.LargeImage = bitmapInfo;
-            }
 
-            ribbonPanel.AddSeparator();
-
-            if (ribbonPanel.AddItem(new PushButtonData("Dimention Element", "Dimention", assemblyPath, "RevitToolKit.DimentionELements")) is PushButton dimButton)
-            {
-                dimButton.ToolTip = "Duplicate element";
-                Uri uriInfo = new Uri(Path.Combine(Path.GetDirectoryName(assemblyPath), "Resources", "dimention.png"));
-                BitmapImage bitmapInfo = new BitmapImage(uriInfo);
-                dimButton.LargeImage = bitmapInfo;
-            }
-
-            ribbonPanel.AddSeparator();
-            if (ribbonPanel.AddItem(new PushButtonData("Test1", "Test1", assemblyPath, "RevitToolKit.Test")) is PushButton btnCommand)
-            {
-                btnCommand.ToolTip = "Reverse Elements";
-                Uri uriInfo = new Uri(Path.Combine(Path.GetDirectoryName(assemblyPath), "Resources", "toolkit.png"));
-                BitmapImage bitmapInfo = new BitmapImage(uriInfo);
-                btnCommand.LargeImage = bitmapInfo;
-            }
-
-            ribbonPanel.AddSeparator();
-
-            if (ribbonPanel.AddItem(new PushButtonData("Export BIM Data", "Export", assemblyPath, "RevitToolKit.ExportBIMData")) is PushButton exportButton)
-            {
-                exportButton.ToolTip = "Export BIM data to CSV";
-                Uri uri = new Uri(Path.Combine(Path.GetDirectoryName(assemblyPath), "Resources", "export.png"));
-                BitmapImage bitmap = new BitmapImage(uri);
-                exportButton.LargeImage = bitmap;
-            }
-
-            ribbonPanel.AddSeparator();
+            PushButtonData pushData = new PushButtonData("Hamdo", "Hamdo1", assemblyPath, "RevitToolKit.Class1");
+            PushButtonData pushData1 = new PushButtonData("Command2", "test", assemblyPath, "RevitToolKit.TestClass");
 
 
-            if (ribbonPanel.AddItem(new PushButtonData("Import BIM Data", "Import", assemblyPath, "RevitToolKit.ImportBIMData")) is PushButton importButton)
-            {
-                importButton.ToolTip = "Import BIM data from CSV";
-                Uri uri = new Uri(Path.Combine(Path.GetDirectoryName(assemblyPath), "Resources", "import.png"));
-                BitmapImage bitmap = new BitmapImage(uri);
-                importButton.LargeImage = bitmap;
-            }
-
-            ribbonPanel.AddSeparator();
-
-            if (ribbonPanel.AddItem(new PushButtonData("Validate BIM Data", "Validate", assemblyPath, "RevitToolKit.ValidateBIMData")) is PushButton validateButton)
-            {
-                validateButton.ToolTip = "Validate BIM data";
-                Uri uri = new Uri(Path.Combine(Path.GetDirectoryName(assemblyPath), "Resources", "validate.png"));
-                BitmapImage bitmap = new BitmapImage(uri);
-                validateButton.LargeImage = bitmap;
-            }
-
-            ribbonPanel.AddSeparator();
-
-            if (ribbonPanel.AddItem(new PushButtonData("Generate BIM Report", "Report", assemblyPath, "RevitToolKit.GenerateBIMReport")) is PushButton reportButton)
-            {
-                reportButton.ToolTip = "Generate BIM data report";
-                Uri uri = new Uri(Path.Combine(Path.GetDirectoryName(assemblyPath), "Resources", "report.png"));
-                BitmapImage bitmap = new BitmapImage(uri);
-                reportButton.LargeImage = bitmap;
-            }
+            RevitCustomPullDownButton(application, assemblyPath, "DropDownEx", "toolkit.png", pushData, pushData1);
 
 
             // Add a pulldown button to the ribbon panel
@@ -163,7 +104,7 @@ namespace RevitToolKit
 
         public RibbonPanel RibbonPanel(UIControlledApplication application)
         {
-            string tabName = "RevitWizard";
+            string tabName = "OptiBIM";
             RibbonPanel ribbonPanel = null;
             try
             {
@@ -187,6 +128,67 @@ namespace RevitToolKit
                 ribbonPanel = panel;
             }
             return ribbonPanel;
+        }
+
+        /// <summary>
+        /// This method creates a pushbutton in Revit.
+        /// </summary>
+        /// <param name="application">UIControlledApplication</param>
+        /// <param name="assemblyPath">Assembly path to project</param>
+        /// <param name="uniqueBtnName">A unique name of btn for the internal use of project</param>
+        /// <param name="uIBtnName">Button name showed on Revit UI.</param>
+        /// <param name="className">Class name doing the intended action when button pressed</param>
+        /// <param name="toolTip">By hovering on btn, a tooltip is shown</param>
+        /// <param name="btnImagePath">btn image name with png format</param>
+        public void RevitCusttomBtn(UIControlledApplication application, string assemblyPath,string uniqueBtnName,string uIBtnName,string className,string toolTip,
+            string btnImagePath)
+        {
+
+         RibbonPanel ribbonPanel = RibbonPanel(application);
+
+            if (ribbonPanel.AddItem(new PushButtonData(uniqueBtnName, uIBtnName, assemblyPath, className)) is PushButton generalBtn)
+            {
+                generalBtn.ToolTip = toolTip;
+                ContextualHelp contextualHelp = new ContextualHelp(ContextualHelpType.Url, "https://eshaqzada.netlify.app/");
+                generalBtn.SetContextualHelp(contextualHelp);
+
+                Uri uri = new Uri(Path.Combine(Path.GetDirectoryName(assemblyPath), "Resources", btnImagePath));
+                BitmapImage bitmap = new BitmapImage(uri);
+                generalBtn.LargeImage = bitmap;
+            }
+
+            ribbonPanel.AddSeparator();
+        }
+
+        /// <summary>
+        /// This method adds a pulldown button to the Revit UI.
+        /// </summary>
+        /// <param name="application">UIControlledApplication</param>
+        /// <param name="assemblyPath">assemblyPath</param>
+        /// <param name="dropDownBtnName">UI button name</param>
+        /// <param name="btnImage">button icon</param>
+        /// <param name="pushButtonData1">push button one data</param>
+        /// <param name="pushButtonData2">Push button two data</param>
+        public void RevitCustomPullDownButton(UIControlledApplication application, string assemblyPath,string dropDownBtnName,string btnImage,  PushButtonData pushButtonData1, PushButtonData pushButtonData2)
+        {
+            RibbonPanel ribbonPanel = RibbonPanel(application);
+        
+            PulldownButtonData pulldownButtonData = new PulldownButtonData("CommandDropdown", dropDownBtnName);
+
+            PulldownButton pulldownButton = ribbonPanel.AddItem(pulldownButtonData) as PulldownButton;
+
+            if (pulldownButton != null)
+            {
+                pulldownButton.ToolTip = "Select a Command";
+                Uri uriInfo = new Uri(Path.Combine(Path.GetDirectoryName(assemblyPath), "Resources", btnImage));
+                BitmapImage bitmapInfo = new BitmapImage(uriInfo);
+                pulldownButton.LargeImage = bitmapInfo;
+
+                 pulldownButton.AddPushButton(pushButtonData1);
+
+                pulldownButton.AddPushButton(pushButtonData2);
+                
+            }
         }
     }
 }

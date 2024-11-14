@@ -12,7 +12,7 @@ using Autodesk.Revit.Exceptions;
 namespace RevitToolKit
 {
     [Transaction(TransactionMode.Manual)]
-        public class DimentionELements : IExternalCommand
+        public class DimensionELements : IExternalCommand
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {

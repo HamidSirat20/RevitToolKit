@@ -18,8 +18,9 @@ namespace RevitToolKit
             var uiapp = commandData.Application;
             var uidoc = uiapp.ActiveUIDocument;
             var doc = uidoc.Document;
-
-
+      
+            
+           
             FilteredElementCollector collector = new FilteredElementCollector(doc);
 
             var windows = new ElementCategoryFilter(BuiltInCategory.OST_Windows,true);

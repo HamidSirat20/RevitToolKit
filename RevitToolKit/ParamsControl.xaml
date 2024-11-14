@@ -1,0 +1,16 @@
+﻿<Window x:Class="RevitToolKit.ParamsControl"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Parameter Checker and Updater" Height="500" Width="400">
+    <Grid>
+        <StackPanel>
+            <TextBlock Text="Required Parameters:" Margin="10"/>
+            <TextBox x:Name="txtParameters" Margin="10" AcceptsReturn="True" Height="100"/>
+
+            <TextBlock Text="Update Rules:" Margin="10"/>
+            <TextBox x:Name="txtRules" Margin="10" AcceptsReturn="True" Height="100"/>
+
+            <Button x:Name="btnOk" Content="OK" Margin="10" Click="btnOk_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
