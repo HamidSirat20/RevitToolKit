@@ -36,21 +36,23 @@ namespace RevitToolKit
 
             RevitCusttomBtn(application, assemblyPath, "Duplicate an Element", "Duplicate", "RevitToolKit.DuplicateElement", "Duplicate an Element", "duplicate.gif");
 
-            RevitCusttomBtn(application, assemblyPath, "Dimension two Element", "Dimension", "RevitToolKit.DimensionELements", "Dimension an Element", "dimention.png");
+            RevitCusttomBtn(application, assemblyPath, "Dimension two Element", "Dimension", "RevitToolKit.DimensionELements", "Dimension an Element", "dimension.png");
 
             RevitCusttomBtn(application, assemblyPath, "Rotate an Element", "Rotate", "RevitToolKit.RotateElement", "Rotate an Element", "rotate.png");
 
             RevitCusttomBtn(application, assemblyPath, "Intersects", "Intersects", "RevitToolKit.ElementIntersectElement", "Intersect an Element", "report.png");
 
-            RevitCusttomBtn(application, assemblyPath, "test button", "Test btn", "RevitToolKit.TestClass", "Intersect an Element", "toolkit.png");
+            RevitCusttomBtn(application, assemblyPath, "test button", "Disable Arch", "RevitToolKit.Main", "Disable Architecture", "disabled.png");
+            RevitCusttomBtn(application, assemblyPath, "disableElectrical", "Disable Electrical", "RevitToolKit.Class1", "Disable Electrical", "disabled.png");
 
-           
+
+
 
             PushButtonData pushData = new PushButtonData("Change Display Graphic", "Change Graphic", assemblyPath, "RevitToolKit.ChangeDisplayGraphic");
             PushButtonData pushData1 = new PushButtonData("Inverse Selection", "Inverse Selected Elements", assemblyPath, "RevitToolKit.InverseSelection");
 
 
-            RevitCustomPullDownButton(application, assemblyPath, "Utilities", "export.png", pushData, pushData1);
+            RevitCustomPullDownButton(application, assemblyPath, "Utilities", "utilities.png", pushData, pushData1);
                     
             return Result.Succeeded;
         }

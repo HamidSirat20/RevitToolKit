@@ -15,7 +15,17 @@ namespace RevitToolKit
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            TaskDialog.Show("Hamid", "Hello Revit again");
+
+            var uiapp = commandData.Application;
+            var app = uiapp.Application;
+            var uidoc = uiapp.ActiveUIDocument;
+            var doc = uidoc.Document;
+
+
+
+            app.IsElectricalEnabled = false;
+
+
             return Result.Succeeded;
         }
     }
