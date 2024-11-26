@@ -21,12 +21,14 @@ namespace RevitToolKit
             var uidoc = uiapp.ActiveUIDocument;
             var doc = uidoc.Document;
 
-
-
-            app.IsElectricalEnabled = false;
-
-
+            var obj = uidoc.Selection.PickObject(Autodesk.Revit.UI.Selection.ObjectType.Element, new WallFilterClass(), "Select only wall");
+            
+          
             return Result.Succeeded;
         }
+
+
     }
+
+
 }

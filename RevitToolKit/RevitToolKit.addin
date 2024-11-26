@@ -17,7 +17,7 @@
 		<AddInId>C06A42CE-1897-458B-AB85-E0DCF3FC6046</AddInId>
 		<FullClassName>RevitToolKit.Application</FullClassName>
 		<VendorId>HamidDev</VendorId>
-		<VendorDescription>https://github.com/HamidSirat20</VendorDescription>
+		<VendorDescription>abeshaqzada@gmail.com</VendorDescription>
 		<VisbilityMode>NotVisibleWhenNoActiveDocument</VisbilityMode>		
 	</AddIn>
 </RevitAddIns>
