@@ -43,7 +43,7 @@ namespace RevitToolKit
             RevitCusttomBtn(application, assemblyPath, "Intersects", "Intersects", "RevitToolKit.ElementIntersectElement", "Intersect an Element", "report.png");
 
             RevitCusttomBtn(application, assemblyPath, "test button", "Pick & Choose", "RevitToolKit.Main", "Filter Me Like One of Your French Walls", "choose.png");
-            RevitCusttomBtn(application, assemblyPath, "disableElectrical", "Disable Electrical", "RevitToolKit.Class1", "Disable Electrical", "disabled.png");
+            RevitCusttomBtn(application, assemblyPath, "DropDownBtn", "Click Me", "RevitToolKit.Class1", "Button", "disabled.png");
 
 
 

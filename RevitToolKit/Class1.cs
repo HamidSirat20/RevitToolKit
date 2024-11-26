@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.Attributes;
+using Autodesk.Revit.UI.Selection;
 
 namespace RevitToolKit
 {
@@ -21,9 +22,28 @@ namespace RevitToolKit
             var uidoc = uiapp.ActiveUIDocument;
             var doc = uidoc.Document;
 
-            var obj = uidoc.Selection.PickObject(Autodesk.Revit.UI.Selection.ObjectType.Element, new WallFilterClass(), "Select only wall");
-            
-          
+            Reference faceReference = uidoc.Selection.PickObject(ObjectType.Element, "Select an element.");
+            Element element = doc.GetElement(faceReference);
+           
+            if (element != null)
+            {
+                string s1 = element.LookupParameter("Comments").AsString();
+                string s2 = element.GetParameter(ParameterTypeId.AllModelInstanceComments).AsString();
+                string s3 = element.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS).AsString();
+                
+
+                TaskDialog.Show("show 1: ", s1);
+                TaskDialog.Show("show 2: ", s2);
+                TaskDialog.Show("show 3: ", s3);
+
+            }
+            var e = element.Parameters;
+            foreach (var item in e)
+            {
+                TaskDialog.Show(": ", item.ToString());
+
+            }
+
             return Result.Succeeded;
         }
 

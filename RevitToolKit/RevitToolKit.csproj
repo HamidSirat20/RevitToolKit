@@ -112,6 +112,9 @@
     <Compile Include="ChangeDisplayGraphic.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="ElementIntersectElement.cs" />
+    <Compile Include="FilterForm.xaml.cs">
+      <DependentUpon>FilterForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WallFilterClass.cs" />
     <Compile Include="InverseSelection.cs" />
     <Compile Include="DeleteElement.cs" />
@@ -134,6 +137,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="FilterForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ParamsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

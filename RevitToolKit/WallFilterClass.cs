@@ -23,6 +23,7 @@ namespace RevitToolKit
 
         public bool AllowReference(Reference reference, XYZ position)
         {
+            
             return false;
         }
     }

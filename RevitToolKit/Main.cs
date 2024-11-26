@@ -19,6 +19,9 @@ namespace RevitToolKit
             var uidoc = uiapp.ActiveUIDocument;
             var doc = uidoc.Document;
 
+            FilterForm filterForm = new FilterForm(doc);
+            filterForm.ShowDialog();
+
             TaskDialog td = new TaskDialog("Filter Selection");
             td.MainInstruction = "Choose the type of elements to filter";
             td.AddCommandLink(TaskDialogCommandLinkId.CommandLink1, "Walls");
