@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Diagnostics;
 using Autodesk.Revit.UI;
 using System.Reflection;
-using Autodesk.Revit.DB;
 using System.IO;
-using Autodesk.Revit.DB.Visual;
 using System.Windows.Media.Imaging;
-using Autodesk.Revit.Attributes;
-using System.Configuration.Assemblies;
 
 namespace RevitToolKit
 {
@@ -26,30 +20,17 @@ namespace RevitToolKit
         { 
             
             RibbonPanel ribbonPanel = RibbonPanel(application);
-            //can enable or disable the panel
-           //ribbonPanel.Enabled = false;
-           //will hide or make visible the panel
-           // ribbonPanel.Visible = true;
             string assemblyPath = Assembly.GetExecutingAssembly().Location;
 
-            RevitCusttomBtn(application, assemblyPath, "Delete Element", "Delete","RevitToolKit.DeleteElement", "Delete an Element", "delete.png");
 
-            RevitCusttomBtn(application, assemblyPath, "Duplicate an Element", "Duplicate", "RevitToolKit.DuplicateElement", "Duplicate an Element", "duplicate.gif");
-
-            RevitCusttomBtn(application, assemblyPath, "Dimension two Element", "Dimension", "RevitToolKit.DimensionELements", "Dimension an Element", "dimension.png");
-
-            RevitCusttomBtn(application, assemblyPath, "Rotate an Element", "Rotate", "RevitToolKit.RotateElement", "Rotate an Element", "rotate.png");
-
-            RevitCusttomBtn(application, assemblyPath, "Intersects", "Intersects", "RevitToolKit.ElementIntersectElement", "Intersect an Element", "report.png");
-
-            RevitCusttomBtn(application, assemblyPath, "test button", "Pick & Choose", "RevitToolKit.Main", "Filter Me Like One of Your French Walls", "choose.png");
-            RevitCusttomBtn(application, assemblyPath, "DropDownBtn", "Click Me", "RevitToolKit.Class1", "Button", "disabled.png");
+            CreateCustomBtn(application, assemblyPath, "Smart Select", "Smart Select", "RevitToolKit.SmartSelect", "Select elements Intelligently", "choose.png");
+            CreateCustomBtn(application, assemblyPath, "Batch Editor", "Edit Params", "RevitToolKit.TestCommand", "Edit parameters in bulk", "toolkit.png");
+            CreateCustomBtn(application, assemblyPath, "Align Elements", "Align Elements", "RevitToolKit.TestCommand", "Align elements precisely", "dimension.png");
+            CreateCustomBtn(application, assemblyPath, "Health Checker", "Check Health", "RevitToolKit.TestCommand", "Analyze project health", "validate.png");
 
 
-
-
-            PushButtonData pushData = new PushButtonData("Change Display Graphic", "Change Graphic", assemblyPath, "RevitToolKit.ChangeDisplayGraphic");
-            PushButtonData pushData1 = new PushButtonData("Inverse Selection", "Inverse Selected Elements", assemblyPath, "RevitToolKit.InverseSelection");
+            PushButtonData pushData = new PushButtonData("Change Display Graphic", "Change Graphic", assemblyPath, "RevitToolKit.TestCommand");
+            PushButtonData pushData1 = new PushButtonData("Inverse Selection", "Inverse Selected Elements", assemblyPath, "RevitToolKit.TestCommand");
 
 
             RevitCustomPullDownButton(application, assemblyPath, "Utilities", "utilities.png", pushData, pushData1);
@@ -59,7 +40,7 @@ namespace RevitToolKit
 
         public RibbonPanel RibbonPanel(UIControlledApplication application)
         {
-            string tabName = "OptiBIM";
+            string tabName = "S-BIM Toolkit";
             RibbonPanel ribbonPanel = null;
             try
             {
@@ -95,7 +76,7 @@ namespace RevitToolKit
         /// <param name="className">Class name doing the intended action when button pressed</param>
         /// <param name="toolTip">By hovering on btn, a tooltip is shown</param>
         /// <param name="btnImagePath">btn image name with png format</param>
-        public void RevitCusttomBtn(UIControlledApplication application, string assemblyPath,string uniqueBtnName,string uIBtnName,string className,string toolTip,
+        public void CreateCustomBtn(UIControlledApplication application, string assemblyPath,string uniqueBtnName,string uIBtnName,string className,string toolTip,
             string btnImagePath)
         {
 

@@ -1,0 +1,22 @@
+﻿<Window x:Class="RevitToolKit.UI.SmartSelection"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RevitToolKit.UI"
+             mc:Ignorable="d" 
+            Height="250" Width="400" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock HorizontalAlignment="Center" Margin="20" FontWeight="Bold">Choose a category to filter:</TextBlock>
+        <ComboBox Name="MyComboBox" Width="200" Height="30" Margin="10"
+                  ItemsSource="{Binding}" 
+                  DisplayMemberPath="Name" />
+        <Button Content="Submit" Grid.Row="1" Width="80" Height="30"  
+                Background="GreenYellow" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click" />
+
+    </Grid>
+</Window>
