@@ -18,16 +18,9 @@ namespace RevitToolKit
             var uidoc = uiapp.ActiveUIDocument;
             var doc = uidoc.Document;
 
-            var collector = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Walls);
+           View view = commandData.View;      
 
-            var familyInstance = new ElementClassFilter(typeof(FamilyInstance));
-            var door = new ElementCategoryFilter(BuiltInCategory.OST_Doors);
-
-            var logical = new LogicalAndFilter(familyInstance, door);
-         
-            collector.WherePasses(logical);
-            TaskDialog taskDialog = new TaskDialog("sELECT");
-            TaskDialog.Show("ELEMENTS",collector.ToString());
+            TaskDialog taskDialog = new TaskDialog(view.Name);
          return Result.Succeeded;
         }
       

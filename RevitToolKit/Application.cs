@@ -17,26 +17,29 @@ namespace RevitToolKit
         }
 
         public Result OnStartup(UIControlledApplication application)
-        { 
+        {
+
+           
+                RibbonPanel ribbonPanel = RibbonPanel(application);
+                string assemblyPath = Assembly.GetExecutingAssembly().Location;
+
+
+                CreateCustomBtn(application, assemblyPath, "Smart Select", "Smart Select", "RevitToolKit.SmartSelect", "Select elements Intelligently", "RevitToolKit.Commands.Availability.AvailableAlways", "select.png");
+                CreateCustomBtn(application, assemblyPath, "Batch Editor", "Edit Params", "RevitToolKit.TestCommand", "Edit parameters in bulk", "RevitToolKit.Commands.Availability.IsButtonAvailable", "toolkit.png");
+                CreateCustomBtn(application, assemblyPath, "Align Elements", "Align Elements", "RevitToolKit.TestCommand", "Align elements precisely", "RevitToolKit.Commands.Availability.AvailableAlways","dimension.png");
+                CreateCustomBtn(application, assemblyPath, "Health Checker", "Check Health", "RevitToolKit.TestCommand", "Analyze project health", "RevitToolKit.Commands.Availability.AvailableAlways", "validate.png");
+
+
+                PushButtonData pushData = new PushButtonData("Change Display Graphic", "Change Graphic", assemblyPath, "RevitToolKit.TestCommand");
+                PushButtonData pushData1 = new PushButtonData("Inverse Selection", "Inverse Selected Elements", assemblyPath, "RevitToolKit.TestCommand");
+
+
+                RevitCustomPullDownButton(application, assemblyPath, "Utilities", "utilities.png", pushData, pushData1);
+
+                return Result.Succeeded;
             
-            RibbonPanel ribbonPanel = RibbonPanel(application);
-            string assemblyPath = Assembly.GetExecutingAssembly().Location;
-
-
-            CreateCustomBtn(application, assemblyPath, "Smart Select", "Smart Select", "RevitToolKit.SmartSelect", "Select elements Intelligently", "choose.png");
-            CreateCustomBtn(application, assemblyPath, "Batch Editor", "Edit Params", "RevitToolKit.TestCommand", "Edit parameters in bulk", "toolkit.png");
-            CreateCustomBtn(application, assemblyPath, "Align Elements", "Align Elements", "RevitToolKit.TestCommand", "Align elements precisely", "dimension.png");
-            CreateCustomBtn(application, assemblyPath, "Health Checker", "Check Health", "RevitToolKit.TestCommand", "Analyze project health", "validate.png");
-
-
-            PushButtonData pushData = new PushButtonData("Change Display Graphic", "Change Graphic", assemblyPath, "RevitToolKit.TestCommand");
-            PushButtonData pushData1 = new PushButtonData("Inverse Selection", "Inverse Selected Elements", assemblyPath, "RevitToolKit.TestCommand");
-
-
-            RevitCustomPullDownButton(application, assemblyPath, "Utilities", "utilities.png", pushData, pushData1);
-                    
-            return Result.Succeeded;
         }
+
 
         public RibbonPanel RibbonPanel(UIControlledApplication application)
         {
@@ -45,6 +48,7 @@ namespace RevitToolKit
             try
             {
                 application.CreateRibbonTab(tabName);
+                
             }
             catch (Exception ex)
             {
@@ -76,8 +80,8 @@ namespace RevitToolKit
         /// <param name="className">Class name doing the intended action when button pressed</param>
         /// <param name="toolTip">By hovering on btn, a tooltip is shown</param>
         /// <param name="btnImagePath">btn image name with png format</param>
-        public void CreateCustomBtn(UIControlledApplication application, string assemblyPath,string uniqueBtnName,string uIBtnName,string className,string toolTip,
-            string btnImagePath)
+        public void CreateCustomBtn(UIControlledApplication application, string assemblyPath, string uniqueBtnName, string uIBtnName, string className, string toolTip,
+            string btnAvailability,string btnImagePath)
         {
 
          RibbonPanel ribbonPanel = RibbonPanel(application);
@@ -85,6 +89,7 @@ namespace RevitToolKit
             if (ribbonPanel.AddItem(new PushButtonData(uniqueBtnName, uIBtnName, assemblyPath, className)) is PushButton generalBtn)
             {
                 generalBtn.ToolTip = toolTip;
+                generalBtn.AvailabilityClassName = btnAvailability;
                 ContextualHelp contextualHelp = new ContextualHelp(ContextualHelpType.Url, "https://eshaqzada.netlify.app/");
                 generalBtn.SetContextualHelp(contextualHelp);
 
